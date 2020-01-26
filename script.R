@@ -1,5 +1,6 @@
 library(igraph)
 library(centiserve)
+library(randomForest)
 
 ######################## FUNCTIONS #####################################
 
@@ -118,5 +119,24 @@ for (n in filenames)
   
   # append to the existing dataframe
   df <- rbind(df, centr)
-  print(df)
+  #print(df)
 }
+
+df$best <- as.factor(df$best)
+
+
+#######################################
+# Predict using random forest
+
+
+train <- sample(nrow(df), 0.7*nrow(df), replace = FALSE)
+TrainSet <- df[train,]
+ValidSet <- df[-train,]
+
+rf <- randomForest(best ~ C1+C2+C3+C4+C5+C6, data = TrainSet, ntree = 500, mtry = 6, importance = TRUE)
+
+# Predicting on train set
+pred <- predict(rf, ValidSet, type = "class")
+# Checking classification accuracy
+table(pred, ValidSet$best)
+
