@@ -58,8 +58,8 @@ print(commMatrix)
 ## Compare each community detection algorithm to the ground truth using NMI and choose the best one
 ##
 print("NMI comparison")
-l <- rbind(c("A: ", compare(com1, ground_truth, method="nmi" )), c("B: ", compare(com2, ground_truth, method="nmi" )),
-                  c("C: ", compare(com3, ground_truth, method="nmi" )), c("D: ", compare(com4, ground_truth, method="nmi" )))
+l <- rbind(c("A", compare(com1, ground_truth, method="nmi" )), c("B", compare(com2, ground_truth, method="nmi" )),
+                  c("C", compare(com3, ground_truth, method="nmi" )), c("D", compare(com4, ground_truth, method="nmi" )))
 print(l)
 
 print("Best community algorithm")
