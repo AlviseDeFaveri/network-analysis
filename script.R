@@ -138,5 +138,5 @@ rf <- randomForest(best ~ C1+C2+C3+C4+C5+C6, data = TrainSet, ntree = 500, mtry 
 # Predicting on train set
 pred <- predict(rf, ValidSet, type = "class")
 # Checking classification accuracy
-table(pred, ValidSet$best)
+print(table(pred, ValidSet$best))
 
